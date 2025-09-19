@@ -1,0 +1,368 @@
+﻿DAY 3
+==========================================================================
+25]Given an array nums>We define a runninig sun of an array as runningSum[i]=sum(nums[0]....num[i])
+
+	return the running sum of nums.
+
+class Solution:
+    def runningSum(self, nums: List[int]) -> List[int]:
+        result = []
+        total = 0
+        for n in nums:
+            total += n
+            result.append(total)
+        return result
+
+===========================================================================
+
+26] Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+
+Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+
+ 
+
+Example 1:
+
+Input: nums = [2,5,1,3,4,7], n = 3
+Output: [2,3,5,4,1,7] 
+Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        res=[]
+        for i in range(n):
+            res.append(nums[i])
+            res.append(nums[n+i])
+        return res
+
+=============================================================================
+27]Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,1]
+Output: 1
+Explanation:
+The first distinct maximum is 3.
+The second distinct maximum is 2.
+The third distinct maximum is 1.
+
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        l=[]
+        for i in nums:
+            if i not in l:
+                l.append(i)
+        l.sort()
+        l.reverse()
+        length=len(l)
+        if length>=3:
+            return l[2]
+        else:
+            return l[0]
+
+==============================================================================
+28]You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.
+
+You are given a list of strings operations, where operations[i] is the ith operation you must apply to the record and is one of the following:
+
+An integer x.
+Record a new score of x.
+'+'.
+Record a new score that is the sum of the previous two scores.
+'D'.
+Record a new score that is the double of the previous score.
+'C'.
+Invalidate the previous score, removing it from the record.
+Return the sum of all the scores on the record after applying all the operations.
+
+The test cases are generated such that the answer and all intermediate calculations fit in a 32-bit integer and that all operations are valid.
+
+ 
+
+Example 1:
+
+Input: ops = ["5","2","C","D","+"]
+Output: 30
+Explanation:
+"5" - Add 5 to the record, record is now [5].
+"2" - Add 2 to the record, record is now [5, 2].
+"C" - Invalidate and remove the previous score, record is now [5].
+"D" - Add 2 * 5 = 10 to the record, record is now [5, 10].
+"+" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
+The total sum is 5 + 10 + 15 = 30.
+
+class Solution:
+    def calPoints(self, operations: List[str]) -> int:
+        stack = []  
+        for op in operations:
+            if op == "C":
+                stack.pop()
+            elif op == "D":
+                stack.append(2 * stack[-1])
+            elif op == "+":
+                stack.append(stack[-1] + stack[-2])
+            else:
+                stack.append(int(op))
+        return sum(stack)
+===============================================================================================
+
+29]
+283. Move Zeroes
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Note that you must do this in-place without making a copy of the array.
+
+Example 1:
+
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        a=0
+        for i in range(len(nums)):
+            if nums[i] !=0:
+                nums[a] , nums[i] = nums[i] , nums[a]
+                a=a+1
+
+============================================================================================
+
+30] TWO SUM
+	Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        for i in range(n - 1):           
+            for j in range(i + 1, n): 
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        return [ ] 
+
+=================================================================================================
+
+31]PLUS ONE
+You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+
+ 
+
+Example 1:
+
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        n=len(digits)
+        for i in  range(n-1,-1,-1):
+            if digits[i]<9:
+                digits[i]+=1
+                return digits
+            if digits[i]==9:
+                digits[i]=0
+        return[1]+digits    
+
+==================================================================================================
+
+32] Best time to buy and sell
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+ 
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n=len(prices)
+        max_profit=0
+        for i in range(n-1):
+            for j in range(i+1,n):
+                profit=prices[j]-prices[i]
+                if profit>max_profit:
+                    max_profit=profit
+        return max_profit
+
+=====================================================================================================
+
+33]REMOVE ELEMENT
+
+Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+
+Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+
+Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+Return k.
+Custom Judge:
+
+The judge will test your solution with the following code:
+
+int[] nums = [...]; // Input array
+int val = ...; // Value to remove
+int[] expectedNums = [...]; // The expected answer with correct length.
+                            // It is sorted with no values equaling val.
+
+int k = removeElement(nums, val); // Calls your implementation
+
+assert k == expectedNums.length;
+sort(nums, 0, k); // Sort the first k elements of nums
+for (int i = 0; i < actualLength; i++) {
+    assert nums[i] == expectedNums[i];
+}
+If all assertions pass, then your solution will be accepted.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,2,3], val = 3
+Output: 2, nums = [2,2,_,_]
+Explanation: Your function should return k = 2, with the first two elements of nums being 2.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        j=0
+        for i in range(len(nums)):
+            if nums[i]!=val:
+                nums[j]=nums[i]
+                j+=1
+        return j
+
+=========================================================================================
+
+34] LEFT RIGHT SUM DIFFERENCE
+
+You are given a 0-indexed integer array nums of size n.
+
+Define two arrays leftSum and rightSum where:
+
+leftSum[i] is the sum of elements to the left of the index i in the array nums. If there is no such element, leftSum[i] = 0.
+rightSum[i] is the sum of elements to the right of the index i in the array nums. If there is no such element, rightSum[i] = 0.
+Return an integer array answer of size n where answer[i] = |leftSum[i] - rightSum[i]|.
+
+ 
+
+Example 1:
+
+Input: nums = [10,4,8,3]
+Output: [15,1,11,22]
+Explanation: The array leftSum is [0,10,14,22] and the array rightSum is [15,11,3,0].
+The array answer is [|0 - 15|,|10 - 11|,|14 - 3|,|22 - 0|] = [15,1,11,22].
+
+
+
+class Solution:
+    def leftRightDifference(self, nums: List[int]) -> List[int]:
+        total = sum(nums)
+        leftSum = 0
+        result = []
+
+        for num in nums:
+            rightSum = total - leftSum - num
+            result.append(abs(leftSum - rightSum))
+            leftSum += num
+
+        return result
+
+==========================================================================================
+
+35] 
+
+
+1299. Replace Elements with Greatest Element on Right Side
+
+Given an array arr, replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1.
+
+After doing so, return the array.
+
+Example 1:
+
+Input: arr = [17,18,5,4,6,1]
+Output: [18,6,6,6,1,-1]
+
+class Solution:
+    def replaceElements(self, arr: List[int]) -> List[int]:
+        n=len(arr)
+        m=-1
+        for i in range(n-1,-1,-1):
+            new_val=m
+            m=max(m,arr[i])
+            arr[i]=new_val
+        return arr
+
+=========================================================================================
+
+BITWISE OPERATOR
+&,|,^,<<,>>
+
+=========================================================================================
+
+36] check a number is even or odd without using modulus.
+
+num=int(input("Enter the number: "))
+if num&1==0:
+    print("even")
+else:
+    print("odd")
+
+===========================================================================================
+
+37] swapping of two number without using temp variable and a,b=b,a.
+
+a=int(input("Enter the number: "))
+b=int(input("Enter the number: "))
+a=a+b
+b=a-b
+a=a-b
+print("after swapping:")
+print("a=",a,"b=",b)
+
+===========================================================================================
+
+38] xor from 1 to n whitout using loop.
+
+def XoR(n):
+    if n%4==1:
+        return 1
+    if r == 0:
+        return n
+    elif r == 1:
+        return 1
+    elif r == 2:
+        return n + 1
+    else:
+        return 0
+l,r=map(int,input().split())
+a=XoR(r)
+b=XoR(l-1)
+print(a^b)

@@ -1,0 +1,170 @@
+﻿DAY 1
+
+1]Greatest of three numbers
+
+num1=int(input("Enter the first number:"))
+num2=int(input("enter the second number:"))
+num3=int(input("Enter the third number:"))
+if num1>=num2 and num1>=num3:
+    greatest=num1
+elif num2>=num1 and num2>=num3:
+    greatest=num2
+else:
+    greatest=num3
+print("Greatest number is:",greatest)
+
+=================================================
+2]To find even and odd number
+
+num=int(input("Enter number:"))
+if num%2==0:
+    print("Even")
+else:
+    print("Odd")
+
+=================================================
+3] Watermelon weight dividing into two parts of even number
+
+w=int(input("Enter watermelon weight:"))
+if w>2 and w%2==0:
+    x=w//2
+    if x%2==0:
+        print(x,x)
+    else:
+        print(x-1,x+1)
+else:
+    print("No")
+
+==================================================
+
+4]An elephant decided to visit his friend. It turned out that the elephant's house is located at point 0 and his friend's house is located at point x(x > 0) of the coordinate line. In one step the elephant can move 1, 2, 3, 4 or 5 positions forward. Determine, what is the minimum number of steps he need to make in order to get to his friend's house.
+
+Input
+The first line of the input contains an integer x (1 ≤ x ≤ 1 000 000) — The coordinate of the friend's house.
+
+Output
+Print the minimum number of steps that elephant needs to make to get from point 0 to point x.
+
+x=int(input("Enter the friend's position: "))
+if x%5==0:
+    print(x//5)
+else:
+    print(x//5+1)
+
+===================================================
+
+5]print fizz if number divisible by 3,print buzz if the number divisible by 5,print fizzbuzz number divisible by both and print numberis not fizzbuzz
+
+x=int(input("Enter the number: "))
+if x%3==0 and x%5==0:
+    print("FizzBuzz")
+elif x%5==0:
+    print("Buzz")
+elif x%3==0:
+    print("Fizz")
+else:
+    print("The given number is not fizz,Buzz and FizzBuzz")
+
+====================================================
+
+6] if number is divisible by 7 or ends with 7 print buzz.
+
+x=int(input("Enter the number: "))
+if x%7==0 or x%10==7:
+    print("Buzz")
+else:
+    print("The given number is not buzz plz try again")
+
+=====================================================
+
+7]The given 2 digit number is same or not.
+
+n=int(input("Enter two digit number:"))
+n1=n//10
+n2=n%10
+if n1==n2:
+    print("same number")
+else:
+    print("Not same")
+
+========================================================
+
+loops:-
+for:
+syntax : for i in range(start if,stop if,steps):
+if we know the number of iterations than we use forloop.
+
+========================================================
+
+8]print even number from 50-100 in horizontol.
+
+for i in range(50,101,2):
+    print(i)
+
+========================================================
+
+9]Given number is prime or not.
+
+n=int(input("Enter the number: "))
+flag=0
+for i in range(2,n):
+    if n%i==0:
+        flag+=1
+if flag==0:
+    print("prime")
+else:
+    print("Not prime")
+
+=========================================================
+while loop:
+syntax: while condition:
+
+=========================================================
+
+10]Adding all the digits
+
+n=int(input("Enter the number:"))
+sum=0
+while n!=0:
+    d=n%10
+    sum=sum+d
+    n=n//10
+print(sum)
+
+==========================================================
+
+11]Reversing the numbers
+
+n=int(input("Enter the number:"))
+rev=0
+while n!=0:
+    d=n%10
+    rev=rev*10+d
+    n=n//10
+print(rev)
+
+===========================================================
+
+12]Bear Limak wants to become the largest of bears, or at least to become larger than his brother Bob.
+
+Right now, Limak and Bob weigh a and b respectively. It's guaranteed that Limak's weight is smaller than or equal to his brother's weight.
+
+Limak eats a lot and his weight is tripled after every year, while Bob's weight is doubled after every year.
+
+After how many full years will Limak become strictly larger (strictly heavier) than Bob?
+
+Input
+The only line of the input contains two integers a and b (1 ≤ a ≤ b ≤ 10) — the weight of Limak and the weight of Bob respectively.
+
+Output
+Print one integer, denoting the integer number of years after which Limak will become strictly larger than Bob.
+
+should find for which year limak weight is greater than bob....
+
+limak,bob=map(int,input("Enter the age of limak and bob: ").split())
+year=0
+while limak<=bob:
+    limak*=3
+    bob*=2
+    year+=1
+print(year)

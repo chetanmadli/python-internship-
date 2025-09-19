@@ -1,0 +1,236 @@
+1] Square of number using function
+
+def sqr(n):
+    return n**n
+n=int(input())
+res=sqr(n)
+print(res)
+
+#using lamba
+
+s=lambda n:n**n
+n=int(input())
+res=s(n)
+print(res)
+
+2]Adding two numbers.
+
+def add(a,b):
+    return a+b
+n=int(input())
+m=int(input())
+res=add(a,b)
+print(res)
+
+#using lambda
+
+f=lambda a,b:a+b
+n=int(input())
+m=int(input())
+res=f(n,m)
+print(res)	
+
+3]Checking even number by using function.
+
+def even(n):
+    return n%2==0
+nums=[1,2,3,4,5,6,7,8,9]
+even=list(filter(even,nums))
+print(even)
+
+#using lambda
+
+nums=[1,2,3,4,5,6,7,8,9]
+even=list(filter(lambda n:n2==0,nums))
+print(even)
+
+4] Even number multiplying by 2
+
+def update(n):
+    return n*2
+nums=[1,2,3,4,5,6,7,8,9]
+even=list(filter(lambda n:n%2==0,nums))
+doubles=list(map(update,even))
+print(doubles)
+
+#without function
+
+nums=[1,2,3,4,5,6,7,8,9]
+even=list(filter(lambda n:n%2==0,nums))
+doubles=list(map(lambda n:n*2,even))
+print(doubles)
+
+5] Even number multiplied by 2 and added them
+
+from functools import reduce
+nums=[1,2,3,4,5,6,7,8,9]
+evens=list(filter(lambda n:n%2==0,nums))
+doubles=list(map(lambda n:n*2,evens))
+num=reduce(lambda a,b:a+b,doubles)
+print(doubles)
+print(num)
+
+6] Reversing the number using function.
+
+def revs(n):
+    r=0
+    while n!=0:
+        d=n%10
+        r=r*10+d
+        n=n//10
+    print(r)
+n=int(input("Enter the number: "))
+revs(n)
+
+7]Check Armstrong  number using function.
+
+def Armstrong(num):
+    temp1=n
+    temp2=n
+    c=0
+    while temp1>0:
+        c+=1
+        temp1=temp1//10
+    arm=0
+    while temp2>0:
+        d=temp2%10
+        arm=arm+d**c
+        temp2=temp2//10
+    if arm==n:
+        print("Armstrong")
+    else:
+        print("Not Armstrong")
+n=int(input("Enter the number: "))
+Armstrong(n)
+
+8] SPY number using function.
+
+def spy(num):
+    sum=0
+    mul=1
+    while num>0:
+        d=num%10
+        sum=sum+d
+        mul=d*mul
+        num=num//10
+    if mul==sum:
+        print("spy number")
+    else:
+        print("not spy number")
+num=int(input("enter the number"))
+spy(num)
+
+9]Niven number check using Functions.
+
+def nivenn(num):
+    sum=0
+    temp=num
+    while temp>0:
+        d=temp%10
+        sum=d+sum
+        temp=temp//10
+    if num%sum==0:
+        print("niven num")
+    else:
+        print("not niven num")
+num=int(input("enter the number"))
+nivenn(num)
+
+10] Perfect Number using Functions.
+
+def perfect(num):
+    sum=0
+    for i in range(1,num+1):
+        if num%i==0:
+            sum=sum+i
+    if num==sum:
+        print("perfect number")
+    else:
+        print("not perfect")
+num=int(input("enter the number"))
+perfect(num)
+
+11] 5,4,3,2,1
+def nums(n):
+    if n==0:
+        return
+    print(n,end="")
+    nums(n-1)
+n=int(input())
+nums(n)
+
+12] RECURSION:-
+ print n to 1
+
+### *1. Print n to 1*
+
+python
+def print_n_to_1(n):
+    if n == 0:
+        return
+    print(n, end=' ')
+    print_n_to_1(n - 1)
+
+13]Print 1 to n
+
+def print_1_to_n(n, i=1):
+    if i > n:
+        return
+    print(i, end=' ')
+    print_1_to_n(n, i + 1)
+
+14]Print 543212345
+
+def print_pattern(n, curr=1):
+    if curr > n:
+        return
+    print(n - curr + 1, end=' ')
+    print_pattern(n, curr + 1)
+    print(n - curr + 1, end=' ')
+
+15] Find factorial of a number.
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+16]Reversing integer using recursion
+
+def reverse_number(n, rev=0):
+    if n == 0:
+        return rev
+    return reverse_number(n // 10, rev * 10 + n % 10)
+
+17]Check if a given integer is palindrome or not.
+
+def is_palindrome(n):
+    return n == reverse_number(n)
+
+18]Check if input is a perfect square or not.
+
+def is_perfect_square(n, i=1):
+    if i * i == n:
+        return True
+    if i * i > n:
+        return False
+    return is_perfect_square(n, i + 1)
+
+19] find a^b(power of two numbers a,b).
+
+def power(a, b):
+    if b == 0:
+        return 1
+    return a * power(a, b - 1)
+
+20]Reduce number to 1(GeeksforGeeks problem).
+
+def reduce_to_one(n):
+    if n == 1:
+        return 0
+    steps = reduce_to_one(n - 1)
+    if n % 2 == 0:
+        steps = min(steps, reduce_to_one(n // 2))
+    if n % 3 == 0:
+        steps = min(steps, reduce_to_one(n // 3))
+    return 1 + steps

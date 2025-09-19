@@ -1,0 +1,208 @@
+﻿51] count alphabets and digits in a string.
+
+s=str(input("Enter the string: "))
+ca=0
+cd=0
+for char in s:
+    if char.isalpha():
+        ca+=1
+    if char.isdigit():
+        cd+=1
+print(ca,cd)
+===================================================================================================
+52] Count vowels and consonants in string.
+
+s=str(input("Enter the string: "))
+vowels=0
+cons=0
+v="aeiouAEIOU"
+for char in s:
+    if char in v:
+        vowels+=1
+    else:
+        cons+=1
+
+print(vowels,"vowels")
+print(cons,"Consonant")
+
+====================================================================================================
+53] replacing whitespace with -
+
+s=str(input("Enter the string: "))
+s=s.replace(" ","-")
+print(s)
+
+====================================================================================================
+54]Making first character of each word to uppercase in a string.
+ #with title()
+
+s=str(input("Enter the string: "))
+s=s.title()
+print(s)
+
+#without title()
+
+s=str(input("Enter the string: "))
+words=s.split()
+res=''
+for word in words:
+    cap=word[0].upper()+word[1: ]
+    res=res+' '+cap
+print(res)
+
+====================================================================================================
+
+55] reversing string whithout slicing.
+
+s=str(input("Enter the string: "))
+s1=''
+for i in range(len(s)-1,-1,-1):
+    s1+=s[i]
+print(s1)
+
+=====================================================================================================
+
+56]length of the longest word in a string.
+
+s=str(input("Enter the string: "))
+s1=''
+for i in range(len(s)-1,-1,-1):
+    s1+=s[i]
+print(s1)
+
+======================================================================================================
+57]Check if the string  is a palindrome or not.
+
+s=str(input("Enter the string: "))
+s1=''
+for i in range(len(s)-1,-1,-1):
+    s1+=s[i]
+print(s1)
+
+======================================================================================================
+58] Removing duplicates in a string without using set.
+
+s=str(input("Enter the string: "))
+s1=''
+for i in s:
+
+    if i not in s1:
+        s1+=i
+print(s1)
+
+=======================================================================================================
+
+59] Most repeated character in a string.
+
+s=str(input("Enter the string: "))
+d={}
+for i in s:
+    if i in d:
+        d[i]+=1
+    else:
+        d[i]=1
+count=0
+for i in d:
+    if d[i]>count:
+        count=d[i]
+        mostrepeated=i
+print("most repeated: ",mostrepeated)
+print(count)
+
+=======================================================================================================
+60] Password validator.
+
+p=str(input("Enter the string: "))
+fc=0
+lc,uc,lwc,dc,spc,cc=1,1,1,1,2,0
+sp="!@#$%^&*"
+if len(p)>=6 and len(p)<=22:
+    lwc=0
+for i in range (len(p)):
+    if p[i].isupper():
+        uc=0
+    elif p[i].islower():
+        lc=0
+    elif p[i].isdigit():
+        dc=0
+    elif p[i] in sp:
+        spc-=1
+        if spc<0:
+            spc=0
+    elif p[i]==p[i+1]:
+        cc=1
+fc=lc+uc+lwc+dc+spc+cc
+print("CHECK= ",fc)
+    
+=========================================================================================================
+61]Check if the sentence is pangram.
+A pangram is a sentence where every letter of the English alphabet appears at least once.
+
+Given a string sentence containing only lowercase English letters, return true if sentence is a pangram, or false otherwise.
+Example 1:
+
+Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+Output: true
+Explanation: sentence contains at least one of every letter of the English alphabet.
+
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        l=set()
+        for char in sentence:
+            if char.isalpha():
+                l.add(char.lower())
+            result=len(l)==26
+        return result   
+=========================================================================================================
+62] Valid anagram.
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+
+Output: true
+
+class Solution:
+    def isAnagram(self,s:str, t: str) -> bool:
+        return(sorted(s)==sorted(t))  
+
+==========================================================================================================
+63]Palindrome
+
+s="malayalam"
+i,j=0,len(s)-1
+while i<=j:
+    if s[i]!=s[j]:
+        print(False)
+        break
+    i+=1
+    j-=1
+else:
+    print(True)
+
+==========================================================================================================
+64]Valid Palindrome
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        i,j= 0, len(s) - 1
+        while i<j:
+            while i<j and not s[i].isalnum():
+                i+= 1
+            while i<j and not s[j].isalnum():
+                j-= 1
+            if s[i].lower() != s[j].lower():
+                return False
+            i+= 1
+            j-= 1
+        return True
+  ==========================================================================================================
+
